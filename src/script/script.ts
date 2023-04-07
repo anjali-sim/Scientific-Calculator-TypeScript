@@ -898,19 +898,44 @@ function changeDropdown(display1: string, display2: string): void {
       this.input = document.getElementById(input) as HTMLInputElement;
     }
   
+    /**
+ * @function  buttonDisableToAble
+ * @description  to make the buttons disabled to abled
+ * @params  none
+ * @returns void
+ */
     buttonDisableToAble(): void {
       (document.getElementById("mc") as HTMLButtonElement).disabled = false;
       (document.getElementById("mr") as HTMLButtonElement).disabled = false;
     }
   
+    /**
+ * @function  memoryClear
+ * @description  to clear the memory
+ * @params  none
+ * @returns void
+ * Examples: The memoryStack array will be empty
+ */
     memoryClear(): void {
       memoryStack = [];
     }
   
+    /**
+ * @function  memoryRecall
+ * @description  to recall the value stored in memory
+ * @params  none
+ * @returns void
+ */
     memoryRecall(): void {
       this.input.value = memoryStack[memoryStack.length - 1].toString();
     }
   
+    /**
+ * @function  memoryAdd
+ * @description  to add a specific number to the last value in memory
+ * @params  none
+ * @returns void
+ */
     memoryAdd(): void {
       this.buttonDisableToAble();
       if (memoryStack.length === 1) {
@@ -922,6 +947,12 @@ function changeDropdown(display1: string, display2: string): void {
       }
     }
   
+    /**
+ * @function  memorySubtract
+ * @description  to subtract a specific number from the last value in memory
+ * @params  none
+ * @returns void
+ */
     memorySubtract(): void {
       this.buttonDisableToAble();
       if (memoryStack.length === 0) {
@@ -933,6 +964,12 @@ function changeDropdown(display1: string, display2: string): void {
       }
     }
   
+    /**
+ * @function  memorySubtract
+ * @description  to subtract a specific number from the last value in memory
+ * @params  non
+ * @returns void
+ */
     memorySave(): void {
       this.buttonDisableToAble();
       if (memoryStack.length === 0) {
