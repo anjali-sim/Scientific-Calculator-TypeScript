@@ -97,3 +97,161 @@ function degreeToRadian(): void {
       event.preventDefault();
     }
   });
+
+  interface TrigonometryCalculator {
+    input: HTMLInputElement;
+    sine(): void;
+    cosine(): void;
+    tangent(): void;
+    cotangent(): void;
+    secant(): void;
+    cosecant(): void;
+  }
+  class TrigonometryCalculatorImplement implements TrigonometryCalculator {
+    public input: HTMLInputElement;
+  
+    constructor(input: HTMLInputElement) {
+      this.input = input;
+    }
+  
+    /**
+     * @function  sine
+     * @description   evaluates the sine of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - sin(90 radian) to 0.8939966636005579
+     * - sin(90 degree) to 1
+     */
+    public sine(): void {
+      if (degree === 0) {
+        this.input.value = Math.sin(
+          (Math.PI / 180) * parseFloat(this.input.value)
+        ).toString();
+      } else {
+        this.input.value = Math.sin(parseFloat(this.input.value)).toString();
+      }
+    }
+  
+    /**
+     * @function  cosine
+     * @description  evaluates the cosine of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - cos(45 radian) to 0.5253219888177297
+     * - cos(45 degree) to 0.7071067811865476
+     */
+    public cosine(): void {
+      if (degree === 0) {
+        this.input.value = Math.cos(
+          (Math.PI / 180) * parseFloat(this.input.value)
+        ).toString();
+      } else {
+        this.input.value = Math.cos(parseFloat(this.input.value)).toString();
+      }
+    }
+  
+    /**
+     * @function  tangent
+     * @description  evaluates the tangent of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - tan(60 radian) to 0.320040389379563
+     * - tan(60 degree) to 1.7320508075688767
+     */
+    public tangent(): void {
+      if (degree === 0) {
+        this.input.value = Math.tan(
+          (Math.PI / 180) * parseFloat(this.input.value)
+        ).toString();
+      } else {
+        this.input.value = Math.tan(parseFloat(this.input.value)).toString();
+      }
+    }
+  
+    /**
+     * @function  cotangent
+     * @description  evaluates the cotangent of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - cot(30 radian) to -0.15611995216165922
+     * - cot(30 degree) to 1.7320508075688774
+     */
+    public cotangent(): void {
+      if (degree === 0) {
+        this.input.value = (
+          1 / Math.tan((Math.PI / 180) * parseFloat(this.input.value))
+        ).toString();
+      } else {
+        this.input.value = (
+          1 / Math.tan(parseFloat(this.input.value))
+        ).toString();
+      }
+    }
+  
+    /**
+     * @function  secant
+     * @description  evaluates the secant of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - sec(45 radian) to 1.9035944074044246
+     * - sec(45 degree) to 1.414213562373095
+     */
+    public secant(): void {
+      if (degree === 0) {
+        this.input.value = (
+          1 / Math.cos((Math.PI / 180) * parseFloat(this.input.value))
+        ).toString();
+      } else {
+        this.input.value = (
+          1 / Math.cos(parseFloat(this.input.value))
+        ).toString();
+      }
+    }
+  
+    /**
+     * @function  cosecant
+     * @description  evaluates the cosecant of a number in degrees or radians
+     * @params  none
+     * @returns void
+     * Examples:
+     * - cosec(60 radian) to -3.280725574403968
+     * - cosec(60 degree) to 1.1547005383792517
+     */
+    public cosecant(): void {
+      if (degree === 0) {
+        this.input.value = (
+          1 / Math.sin((Math.PI / 180) * parseFloat(this.input.value))
+        ).toString();
+      } else {
+        this.input.value = (
+          1 / Math.sin(parseFloat(this.input.value))
+        ).toString();
+      }
+    }
+  }
+  const trigonometry = new TrigonometryCalculatorImplement(inputField);
+  
+  const sineFunction = () => {
+    trigonometry.sine();
+  };
+  const cosineFunction = () => {
+    trigonometry.cosine();
+  };
+  const tangentFunction = () => {
+    trigonometry.tangent();
+  };
+  const cotangentFunction = () => {
+    trigonometry.cotangent();
+  };
+  const secantFunction = () => {
+    trigonometry.secant();
+  };
+  const cosecantFunction = () => {
+    trigonometry.cosecant();
+  };
+  
