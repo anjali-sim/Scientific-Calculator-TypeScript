@@ -411,3 +411,145 @@ function changeDropdown(display1: string, display2: string): void {
       console.log("Error: `document` is not defined");
     }
   }
+
+  interface SecondCalculator {
+    square(): void;
+    squareRoot(): void;
+    xRaiseY(): void;
+    raiseTo10(): void;
+    logarithm(): void;
+    naturalLogarithm(): void;
+  }
+  
+  class SecondCalculatorImplement implements SecondCalculator {
+    input: HTMLInputElement;
+    errorDiv: HTMLElement;
+  
+    constructor(input: string, errorDiv: string) {
+      this.input = document.getElementById(input) as HTMLInputElement;
+      this.errorDiv = document.getElementById(errorDiv) as HTMLElement;
+    }
+  
+    /**
+     * @function  square
+     * @description  performs square of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 5^2 to 25
+     * - -6^2 to 36
+     */
+    public square(): void {
+      this.input.value = Math.pow(Number(this.input.value), 2).toString();
+    }
+  
+    /**
+     * @function  squareRoot
+     * @description  performs the square root of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - sqaureRoot(25) to 5
+     * - squareRoot(-4) to Error!
+     */
+    public squareRoot(): void {
+      const inputNumber = Number(this.input.value);
+      if (inputNumber < 0) {
+        this.displayError();
+      } else {
+        this.input.value = Math.sqrt(inputNumber).toString();
+      }
+    }
+  
+    /**
+     * @function  xRaiseY
+     * @description  evaluates a number raised to another number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 6^3 to 216
+     */
+    public xRaiseY(): void {
+      this.input.value += "^";
+    }
+  
+    /**
+     * @function  raiseTo10
+     * @description  gives 10 to the power of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 10^3 to 1000
+     */
+    public raiseTo10(): void {
+      this.input.value = Math.pow(10, Number(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  logarithm
+     * @description  performs logarithm(log base 10) of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - log(2) to 0.3010299956639812
+     */
+    public logarithm(): void {
+      const inputNumber = Number(this.input.value);
+      if (inputNumber < 0) {
+        this.displayError();
+      } else {
+        this.input.value = Math.log10(inputNumber).toString();
+      }
+    }
+  
+    /**
+     * @function  naturalLogarithm
+     * @description  performs natural logarithm(ln base e) of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - ln(2) to 0.6931471805599453
+     */
+    public naturalLogarithm(): void {
+      const inputNumber = Number(this.input.value);
+      if (inputNumber < 0) {
+        this.displayError();
+      } else {
+        this.input.value = Math.log(inputNumber).toString();
+      }
+    }
+  
+    /**
+     * @function  displayError
+     * @description  to display the error and hide it after 2 seconds
+     * @params  none
+     * @returns void
+     */
+    private displayError(): void {
+      this.errorDiv.textContent = "Error!";
+      setTimeout(() => {
+        this.errorDiv.textContent = "";
+        this.input.value = "";
+      }, 2000);
+    }
+  }
+  const advancefunctionality = new SecondCalculatorImplement("input", "errorDiv");
+  
+  const squareFunction = () => {
+    advancefunctionality.square();
+  };
+  const squareRootFunction = () => {
+    advancefunctionality.squareRoot();
+  };
+  const xRaiseYFunction = () => {
+    advancefunctionality.xRaiseY();
+  };
+  const raiseTo10Function = () => {
+    advancefunctionality.raiseTo10();
+  };
+  const logarithmFunction = () => {
+    advancefunctionality.logarithm();
+  };
+  const naturalLogarithmFunction = () => {
+    advancefunctionality.naturalLogarithm();
+  };
