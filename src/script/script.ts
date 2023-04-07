@@ -533,23 +533,159 @@ function changeDropdown(display1: string, display2: string): void {
       }, 2000);
     }
   }
-  const advancefunctionality = new SecondCalculatorImplement("input", "errorDiv");
+  const advanceFunctionality = new SecondCalculatorImplement("input", "errorDiv");
   
   const squareFunction = () => {
-    advancefunctionality.square();
+    advanceFunctionality.square();
   };
   const squareRootFunction = () => {
-    advancefunctionality.squareRoot();
+    advanceFunctionality.squareRoot();
   };
   const xRaiseYFunction = () => {
-    advancefunctionality.xRaiseY();
+    advanceFunctionality.xRaiseY();
   };
   const raiseTo10Function = () => {
-    advancefunctionality.raiseTo10();
+    advanceFunctionality.raiseTo10();
   };
   const logarithmFunction = () => {
-    advancefunctionality.logarithm();
+    advanceFunctionality.logarithm();
   };
   const naturalLogarithmFunction = () => {
-    advancefunctionality.naturalLogarithm();
+    advanceFunctionality.naturalLogarithm();
+  };
+
+  interface SecondCalculator1 {
+    cube(): void;
+    cubeRoot(): void;
+    raiseTo2(): void;
+    logPlus(): void;
+    expMinus(): void;
+    eRaisex(): void;
+  }
+  
+  class SecondCalculator1Implement implements SecondCalculator1 {
+    input: HTMLInputElement;
+    errorDiv: HTMLElement;
+  
+    constructor(input: string, errorDiv: string) {
+      this.input = document.getElementById(input) as HTMLInputElement;
+      this.errorDiv = document.getElementById(errorDiv) as HTMLElement;
+    }
+  
+    /**
+     * @function  cube
+     * @description  to calculate the cube of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 2^3 to 8
+     */
+    public cube(): void {
+      this.input.value = Math.pow(Number(this.input.value), 3).toString();
+    }
+  
+    /**
+     * @function  cubeRoot
+     * @description  to calculate the cube root
+     * @params  none
+     * @returns void
+     * Examples:
+     * - cubeRoot(125) to 5
+     * - cubeRoot(-8) to Error!
+     */
+    public cubeRoot(): void {
+      const inputNumber = Number(this.input.value);
+      if (inputNumber < 0) {
+        this.displayError();
+      } else {
+        this.input.value = Math.cbrt(inputNumber).toString();
+      }
+    }
+  
+    /**
+     * @function  raiseTo2
+     * @description  to calculate 2 to power of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 2^5 to 32
+     * - 2^54524 to Infinity
+     */
+    public raiseTo2(): void {
+      this.input.value = Math.pow(2, Number(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  logPlus
+     * @description  to calculate logarithm of 1+p number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - log1p(8) to 2.1972245773362196
+     */
+    public logPlus(): void {
+      const inputNumber = Number(this.input.value);
+      if (inputNumber < 0) {
+        this.displayError();
+      } else {
+        this.input.value = Math.log1p(inputNumber).toString();
+      }
+    }
+  
+    /**
+     * @function  expMinus
+     * @description  to calculate e^x-1 where x is number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - expm1(2) to 6.38905609893065
+     */
+    public expMinus(): void {
+      this.input.value = Math.expm1(Number(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  eRaisex
+     * @description  to calculate e^x where x is number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - e^2 to 7.3890560989306495
+     */
+    public eRaisex(): void {
+      this.input.value = Math.pow(Math.E, Number(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  displayError
+     * @description  to display the error and hide it after 2 seconds
+     * @params  none
+     * @returns void
+     */
+    private displayError(): void {
+      this.errorDiv.textContent = "Error!";
+      setTimeout(() => {
+        this.errorDiv.textContent = "";
+        this.input.value = "";
+      }, 2000);
+    }
+  }
+  const moreAdvanceFunctionality = new SecondCalculator1Implement("input", "errorDiv");
+  const cubeFunction = () => {
+    moreAdvanceFunctionality.cube();
+  };
+  const cubeRootFunction = () => {
+    moreAdvanceFunctionality.cubeRoot();
+  };
+  const raiseTo2Function = () => {
+    moreAdvanceFunctionality.raiseTo2();
+  };
+  const logPlusFunction = () => {
+    moreAdvanceFunctionality.logPlus();
+  };
+  const expMinusFunction = () => {
+    moreAdvanceFunctionality.expMinus();
+  };
+  const eRaisexFunction = () => {
+    moreAdvanceFunctionality.eRaisex();
   };
