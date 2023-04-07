@@ -880,3 +880,83 @@ function changeDropdown(display1: string, display2: string): void {
   const signChangeFunction = () => {
     extraFunctionality.signChange();
   };
+
+  interface Memory {
+    input: HTMLInputElement;
+    buttonDisableToAble(): void;
+    memoryClear(): void;
+    memoryRecall(): void;
+    memoryAdd(): void;
+    memorySubtract(): void;
+    memorySave(): void;
+  }
+  
+  class MemoryImplement implements Memory {
+    input: HTMLInputElement;
+  
+    constructor(input: string) {
+      this.input = document.getElementById(input) as HTMLInputElement;
+    }
+  
+    buttonDisableToAble(): void {
+      (document.getElementById("mc") as HTMLButtonElement).disabled = false;
+      (document.getElementById("mr") as HTMLButtonElement).disabled = false;
+    }
+  
+    memoryClear(): void {
+      memoryStack = [];
+    }
+  
+    memoryRecall(): void {
+      this.input.value = memoryStack[memoryStack.length - 1].toString();
+    }
+  
+    memoryAdd(): void {
+      this.buttonDisableToAble();
+      if (memoryStack.length === 1) {
+        memoryStack.push(parseInt(this.input.value));
+      } else {
+        memoryStack[memoryStack.length - 1] += parseInt(
+          this.input.value
+        );
+      }
+    }
+  
+    memorySubtract(): void {
+      this.buttonDisableToAble();
+      if (memoryStack.length === 0) {
+        memoryStack.push(-1 * parseInt(this.input.value));
+      } else {
+        memoryStack[memoryStack.length - 1] -= parseInt(
+          this.input.value
+        );
+      }
+    }
+  
+    memorySave(): void {
+      this.buttonDisableToAble();
+      if (memoryStack.length === 0) {
+        memoryStack.push(parseFloat(this.input.value));
+      } else {
+        memoryStack.push(parseFloat(this.input.value));
+      }
+    }
+  }
+  
+  const memoryFunctionality = new MemoryImplement("input");
+  const memoryClearFunction = () => {
+    memoryFunctionality.memoryClear();
+  };
+  const memoryRecallFunction = () => {
+    memoryFunctionality.memoryRecall();
+  };
+  const memoryAddFunction = () => {
+    memoryFunctionality.memoryAdd();
+  };
+  const memorySubtractFunction = () => {
+    memoryFunctionality.memorySubtract();
+  };
+  const memorySaveFunction = () => {
+    memoryFunctionality.memorySave();
+  };
+  
