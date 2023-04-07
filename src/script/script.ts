@@ -335,3 +335,79 @@ function degreeToRadian(): void {
   const modulusFunction = () => {
     functions.modulus();
   };
+
+  /**
+ * @function  calculate
+ * @description  to evaluate the basic expressions
+ * @params  none
+ */
+function calculate() {
+    const input = document.getElementById("input") as HTMLInputElement;
+    input.value = input.value.replaceAll("^", "**");
+    input.value = input.value;
+    const result = input.value;
+    // Error handling
+    /**
+     * this try catch handles the error when user enters invalid input
+     * Examples:
+     * 9-6+5 = 8
+     * 5-6/5* = Invalid Input!
+     */
+    function cal(user: string) {
+      return new Function("return " + user)();
+    }
+    try {
+      const output = cal(`${result}`);
+      const inputEl = document.getElementById("input") as HTMLInputElement;
+      inputEl.value = output.toString();
+    } catch (err) {
+      const errDiv = document.getElementById("errorDiv") as HTMLDivElement;
+      errDiv.textContent = "Invalid Input!";
+      setTimeout(() => {
+        errDiv.textContent = "";
+        const inputEl = document.getElementById("input") as HTMLInputElement;
+        inputEl.value = "";
+      }, 2000);
+    }
+  }
+
+  /**
+ * @function  changeDropdown
+ * @description  to toggle the buttons
+ * @params  none
+ * @returns void
+ */
+function changeDropdown(display1: string, display2: string): void {
+    if (typeof document !== "undefined") {
+      const elements2: HTMLElement[] = Array.from(
+        document.getElementsByClassName("display2")
+      ) as HTMLElement[];
+      const elements1: HTMLElement[] = Array.from(
+        document.getElementsByClassName("display1")
+      ) as HTMLElement[];
+  
+      if (dropdownChange === 1) {
+        elements2.forEach((x: HTMLElement) => {
+          x.style.display = "inline-block";
+        });
+  
+        elements1.forEach((x: HTMLElement) => {
+          x.style.display = "none";
+        });
+  
+        dropdownChange = 0;
+      } else {
+        elements1.forEach((x: HTMLElement) => {
+          x.style.display = "inline-block";
+        });
+  
+        elements2.forEach((x: HTMLElement) => {
+          x.style.display = "none";
+        });
+  
+        dropdownChange = 1;
+      }
+    } else {
+      console.log("Error: `document` is not defined");
+    }
+  }
