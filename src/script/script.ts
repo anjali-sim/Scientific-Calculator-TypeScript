@@ -255,3 +255,83 @@ function degreeToRadian(): void {
     trigonometry.cosecant();
   };
   
+  interface FunctionCalculator {
+    input: HTMLInputElement;
+    floor(): void;
+    ceil(): void;
+    random(): void;
+    modulus(): void;
+  }
+  
+  class FunctionCalculatorImplement implements FunctionCalculator {
+    public input: HTMLInputElement;
+  
+    constructor(input: HTMLInputElement) {
+      this.input = input;
+    }
+  
+    /**
+     * @function  floor
+     * @description  to round down and evaluates the largest integer less than or equal to a given number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 5.85 = 5
+     */
+    public floor(): void {
+      this.input.value = Math.floor(parseFloat(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  ceil
+     * @description  to round up and evaluates the smaller integer greater than or equal to a given number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 5.23 = 6
+     */
+    public ceil(): void {
+      this.input.value = Math.ceil(parseFloat(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  random
+     * @description  gives a random number from 0 up to but not including 1
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 0.8535283651436478
+     * - 0.6407613844878561
+     * - 0.1827885058635727
+     */
+    public random(): void {
+      this.input.value = Math.random().toString();
+    }
+  
+    /**
+     * @function  modulus
+     * @description  evaluates the absolute value of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - -6.235 = 6.235
+     */
+    public modulus(): void {
+      this.input.value = Math.abs(parseFloat(this.input.value)).toString();
+    }
+  }
+  
+  const functions = new FunctionCalculatorImplement(inputField);
+  
+  const floorFunction = () => {
+    functions.floor();
+  };
+  const ceilFunction = () => {
+    functions.ceil();
+  };
+  const randomFunction = () => {
+    functions.random();
+  };
+  const modulusFunction = () => {
+    functions.modulus();
+  };
