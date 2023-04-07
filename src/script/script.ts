@@ -689,3 +689,194 @@ function changeDropdown(display1: string, display2: string): void {
   const eRaisexFunction = () => {
     moreAdvanceFunctionality.eRaisex();
   };
+
+  interface ExtraFunctionInterface {
+    pi(): void;
+    euler(): void;
+    clearAll(): void;
+    removeOneElementFromEnd(): void;
+    byX(): void;
+    modulo(): void;
+    modulus(): void;
+    exponent(): void;
+    factorial(): void;
+    signChange(): void;
+  }
+  
+  class ExtraFunctionImplement implements ExtraFunctionInterface {
+    input: HTMLInputElement;
+    errorDiv: HTMLElement;
+  
+    constructor(input: string, errorDiv: string) {
+      this.input = document.getElementById(input) as HTMLInputElement;
+      this.errorDiv = document.getElementById(errorDiv) as HTMLElement;
+    }
+  
+    /**
+     * @function  pi
+     * @description  displays the value of PI
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 3.141592653589793
+     */
+    public pi(): void {
+      this.input.value = Math.PI.toString();
+    }
+  
+    /**
+     * @function  euler
+     * @description  displays the value of Euler's number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 2.718281828459045
+     */
+    public euler(): void {
+      this.input.value = Math.E.toString();
+    }
+  
+    /**
+     * @function  clearAll
+     * @description  to entirely clear the input field
+     * @params  none
+     * @returns void
+     */
+    public clearAll(): void {
+      this.input.value = "";
+    }
+  
+    /**
+     * @function  removeOneElementFromEnd
+     * @description  to remove one number from the right side end once clicking on it
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 5.2893 to 5.289
+     */
+    public removeOneElementFromEnd(): void {
+      this.input.value = this.input.value.slice(0, -1);
+    }
+  
+    /**
+     * @function  byX
+     * @description  performs inverse of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 1/2 to 0.5
+     */
+    public byX(): void {
+      const x = Number(this.input.value);
+      this.input.value = (1 / x).toString();
+    }
+  
+    /**
+     * @function modulo
+     * @description evaluates the remainder after dividing one number by another.
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 9%7 to 2
+     * - 2%2 to 0
+     */
+    public modulo(): void {
+      this.input.value += "%";
+    }
+  
+    /**
+     * @function  modulus
+     * @description  evaluates the absolute value of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - -6.235 = 6.235
+     */
+    public modulus(): void {
+      this.input.value = Math.abs(parseFloat(this.input.value)).toString();
+    }
+  
+    /**
+     * @function  exponent
+     * @description  evaluates the value of E^x, where E is Euler's number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - E^5 to 148.4131591025766
+     */
+    public exponent(): void {
+      const x = Number(this.input.value);
+      this.input.value = Math.exp(x).toString();
+    }
+  
+    /**
+     * @function  factorial
+     * @description  performs the factorial of a number
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 5! to 120
+     */
+    public factorial(): void {
+      let number = Number(this.input.value);
+      if (number < 0) {
+        const errDiv = document.getElementById("errorDiv");
+        this.errorDiv.textContent = "Error!";
+        setTimeout(() => {
+          this.errorDiv.textContent = "";
+          this.input.value = "";
+        }, 2000);
+      } else if (number == 0 || number == 1) {
+        this.input.value = "1";
+      } else if (number > 1) {
+        for (let i = number - 1; i > 1; i--) {
+          number = number * i;
+        }
+        this.input.value = number.toString();
+      }
+    }
+  
+    /**
+     * @function  signChange
+     * @description  gives a number with its opposite sign
+     * @params  none
+     * @returns void
+     * Examples:
+     * - 7 to -7
+     */
+    public signChange(): void {
+      const x = Number(this.input.value);
+      this.input.value = (-x).toString();
+    }
+  }
+  const extraFunctionality = new ExtraFunctionImplement("input", "errorDiv");
+  const piFunction = () => {
+    extraFunctionality.pi();
+  };
+  const eulerFunction = () => {
+    extraFunctionality.euler();
+  };
+  const clearAllFunction = () => {
+    extraFunctionality.clearAll();
+  };
+  const removeOneElementFromEndFunction = () => {
+    extraFunctionality.removeOneElementFromEnd();
+  };
+  const byXFunction = () => {
+    extraFunctionality.byX();
+  };
+  const moduloFunction = () => {
+    extraFunctionality.modulo();
+  };
+  const modulusFunction1 = () => {
+    extraFunctionality.modulus();
+  };
+  const exponentFunction = () => {
+    extraFunctionality.exponent();
+  };
+  const factorialFunction = () => {
+    extraFunctionality.factorial();
+  };
+  const signChangeFunction = () => {
+    extraFunctionality.signChange();
+  };
