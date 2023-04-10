@@ -1,11 +1,12 @@
+"use strict";
 //array to perform the memory operations
-var memoryStack = [];
+let memoryStack = [];
 // variable used to toggle between degree and radian buttons
-var degree = 0;
+let degree = 0;
 // for changing the dropdowns
-var dropdownChange = 0;
+let dropdownChange = 0;
 //to take the input
-var inputField = document.getElementById("input");
+const inputField = document.getElementById("input");
 /**
  * @function displayInputValue
  * @description to take the input from the input field entered by the user and display it on the display bar
@@ -23,7 +24,7 @@ function displayInputValue(value) {
  * @returns void
  */
 function fixedToExponent() {
-    var input = document.getElementById("input");
+    const input = document.getElementById("input");
     input.value = Number(input.value).toExponential().toString();
 }
 /**
@@ -36,12 +37,12 @@ function degreeToRadian() {
     // if the degree variable is set to 0, then display the RAD(radian) button else DEG(degree) button
     if (degree === 0) {
         degree = 1;
-        var degreeElement = document.querySelector("#degree");
+        const degreeElement = document.querySelector("#degree");
         degreeElement.innerHTML = "RAD";
     }
     else {
         degree = 0;
-        var degreeElement = document.querySelector("#degree");
+        const degreeElement = document.querySelector("#degree");
         degreeElement.innerHTML = "DEG";
     }
 }
@@ -53,7 +54,7 @@ function degreeToRadian() {
  * - 5869*2 to 5869*2
  */
 inputField.addEventListener("keypress", function (event) {
-    var allowedKeyCodes = [
+    const allowedKeyCodes = [
         "33",
         "34",
         "35",
@@ -77,21 +78,21 @@ inputField.addEventListener("keypress", function (event) {
         "125",
         "126",
     ];
-    var i;
+    let i;
     for (i = 65; i <= 90; i++) {
         allowedKeyCodes.push(i.toString());
     }
     for (i = 97; i <= 122; i++) {
         allowedKeyCodes.push(i.toString());
     }
-    var keyCode = event.keyCode.toString();
+    const keyCode = event.keyCode.toString();
     if (allowedKeyCodes.indexOf(keyCode) > -1) {
         event.preventDefault();
     }
 });
 //class for Trigonometry functions containing its different methods
-var TrigonometryCalculatorImplement = /** @class */ (function () {
-    function TrigonometryCalculatorImplement(input) {
+class TrigonometryCalculatorImplement {
+    constructor(input) {
         this.input = input;
     }
     /**
@@ -103,14 +104,14 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - sin(90 radian) to 0.8939966636005579
      * - sin(90 degree) to 1
      */
-    TrigonometryCalculatorImplement.prototype.sine = function () {
+    sine() {
         if (degree === 0) {
             this.input.value = Math.sin((Math.PI / 180) * parseFloat(this.input.value)).toString();
         }
         else {
             this.input.value = Math.sin(parseFloat(this.input.value)).toString();
         }
-    };
+    }
     /**
      * @function  cosine
      * @description  evaluates the cosine of a number in degrees or radians
@@ -120,14 +121,14 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - cos(45 radian) to 0.5253219888177297
      * - cos(45 degree) to 0.7071067811865476
      */
-    TrigonometryCalculatorImplement.prototype.cosine = function () {
+    cosine() {
         if (degree === 0) {
             this.input.value = Math.cos((Math.PI / 180) * parseFloat(this.input.value)).toString();
         }
         else {
             this.input.value = Math.cos(parseFloat(this.input.value)).toString();
         }
-    };
+    }
     /**
      * @function  tangent
      * @description  evaluates the tangent of a number in degrees or radians
@@ -137,14 +138,14 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - tan(60 radian) to 0.320040389379563
      * - tan(60 degree) to 1.7320508075688767
      */
-    TrigonometryCalculatorImplement.prototype.tangent = function () {
+    tangent() {
         if (degree === 0) {
             this.input.value = Math.tan((Math.PI / 180) * parseFloat(this.input.value)).toString();
         }
         else {
             this.input.value = Math.tan(parseFloat(this.input.value)).toString();
         }
-    };
+    }
     /**
      * @function  cotangent
      * @description  evaluates the cotangent of a number in degrees or radians
@@ -154,14 +155,14 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - cot(30 radian) to -0.15611995216165922
      * - cot(30 degree) to 1.7320508075688774
      */
-    TrigonometryCalculatorImplement.prototype.cotangent = function () {
+    cotangent() {
         if (degree === 0) {
             this.input.value = (1 / Math.tan((Math.PI / 180) * parseFloat(this.input.value))).toString();
         }
         else {
             this.input.value = (1 / Math.tan(parseFloat(this.input.value))).toString();
         }
-    };
+    }
     /**
      * @function  secant
      * @description  evaluates the secant of a number in degrees or radians
@@ -171,14 +172,14 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - sec(45 radian) to 1.9035944074044246
      * - sec(45 degree) to 1.414213562373095
      */
-    TrigonometryCalculatorImplement.prototype.secant = function () {
+    secant() {
         if (degree === 0) {
             this.input.value = (1 / Math.cos((Math.PI / 180) * parseFloat(this.input.value))).toString();
         }
         else {
             this.input.value = (1 / Math.cos(parseFloat(this.input.value))).toString();
         }
-    };
+    }
     /**
      * @function  cosecant
      * @description  evaluates the cosecant of a number in degrees or radians
@@ -188,39 +189,38 @@ var TrigonometryCalculatorImplement = /** @class */ (function () {
      * - cosec(60 radian) to -3.280725574403968
      * - cosec(60 degree) to 1.1547005383792517
      */
-    TrigonometryCalculatorImplement.prototype.cosecant = function () {
+    cosecant() {
         if (degree === 0) {
             this.input.value = (1 / Math.sin((Math.PI / 180) * parseFloat(this.input.value))).toString();
         }
         else {
             this.input.value = (1 / Math.sin(parseFloat(this.input.value))).toString();
         }
-    };
-    return TrigonometryCalculatorImplement;
-}());
+    }
+}
 //instance of the class for Trigonometry functions
-var trigonometry = new TrigonometryCalculatorImplement(inputField);
-var sineFunction = function () {
+const trigonometry = new TrigonometryCalculatorImplement(inputField);
+const sineFunction = () => {
     trigonometry.sine();
 };
-var cosineFunction = function () {
+const cosineFunction = () => {
     trigonometry.cosine();
 };
-var tangentFunction = function () {
+const tangentFunction = () => {
     trigonometry.tangent();
 };
-var cotangentFunction = function () {
+const cotangentFunction = () => {
     trigonometry.cotangent();
 };
-var secantFunction = function () {
+const secantFunction = () => {
     trigonometry.secant();
 };
-var cosecantFunction = function () {
+const cosecantFunction = () => {
     trigonometry.cosecant();
 };
 // class for functions containing its different methods
-var FunctionCalculatorImplement = /** @class */ (function () {
-    function FunctionCalculatorImplement(input) {
+class FunctionCalculatorImplement {
+    constructor(input) {
         this.input = input;
     }
     /**
@@ -231,9 +231,9 @@ var FunctionCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - 5.85 = 5
      */
-    FunctionCalculatorImplement.prototype.floor = function () {
+    floor() {
         this.input.value = Math.floor(parseFloat(this.input.value)).toString();
-    };
+    }
     /**
      * @function  ceil
      * @description  to round up and evaluates the smaller integer greater than or equal to a given number
@@ -242,9 +242,9 @@ var FunctionCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - 5.23 = 6
      */
-    FunctionCalculatorImplement.prototype.ceil = function () {
+    ceil() {
         this.input.value = Math.ceil(parseFloat(this.input.value)).toString();
-    };
+    }
     /**
      * @function  random
      * @description  gives a random number from 0 up to but not including 1
@@ -255,9 +255,9 @@ var FunctionCalculatorImplement = /** @class */ (function () {
      * - 0.6407613844878561
      * - 0.1827885058635727
      */
-    FunctionCalculatorImplement.prototype.random = function () {
+    random() {
         this.input.value = Math.random().toString();
-    };
+    }
     /**
      * @function  modulus
      * @description  evaluates the absolute value of a number
@@ -266,23 +266,22 @@ var FunctionCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - -6.235 = 6.235
      */
-    FunctionCalculatorImplement.prototype.modulus = function () {
+    modulus() {
         this.input.value = Math.abs(parseFloat(this.input.value)).toString();
-    };
-    return FunctionCalculatorImplement;
-}());
+    }
+}
 //instance of the class for functions
-var functions = new FunctionCalculatorImplement(inputField);
-var floorFunction = function () {
+const functions = new FunctionCalculatorImplement(inputField);
+const floorFunction = () => {
     functions.floor();
 };
-var ceilFunction = function () {
+const ceilFunction = () => {
     functions.ceil();
 };
-var randomFunction = function () {
+const randomFunction = () => {
     functions.random();
 };
-var modulusFunction = function () {
+const modulusFunction = () => {
     functions.modulus();
 };
 /**
@@ -291,10 +290,10 @@ var modulusFunction = function () {
  * @params  none
  */
 function calculate() {
-    var input = document.getElementById("input");
+    const input = document.getElementById("input");
     input.value = input.value.replaceAll("^", "**");
     input.value = input.value;
-    var result = input.value;
+    const result = input.value;
     // Error handling
     /**
      * this try catch handles the error when user enters invalid input
@@ -306,16 +305,16 @@ function calculate() {
         return new Function("return " + user)();
     }
     try {
-        var output = cal("".concat(result));
-        var inputEl = document.getElementById("input");
+        const output = cal(`${result}`);
+        const inputEl = document.getElementById("input");
         inputEl.value = output.toString();
     }
     catch (err) {
-        var errDiv_1 = document.getElementById("errorDiv");
-        errDiv_1.textContent = "Invalid Input!";
-        setTimeout(function () {
-            errDiv_1.textContent = "";
-            var inputEl = document.getElementById("input");
+        const errDiv = document.getElementById("errorDiv");
+        errDiv.textContent = "Invalid Input!";
+        setTimeout(() => {
+            errDiv.textContent = "";
+            const inputEl = document.getElementById("input");
             inputEl.value = "";
         }, 2000);
     }
@@ -328,22 +327,22 @@ function calculate() {
  */
 function changeDropdown(display1, display2) {
     if (typeof document !== "undefined") {
-        var elements2 = Array.from(document.getElementsByClassName("display2"));
-        var elements1 = Array.from(document.getElementsByClassName("display1"));
+        const elements2 = Array.from(document.getElementsByClassName("display2"));
+        const elements1 = Array.from(document.getElementsByClassName("display1"));
         if (dropdownChange === 1) {
-            elements2.forEach(function (x) {
+            elements2.forEach((x) => {
                 x.style.display = "inline-block";
             });
-            elements1.forEach(function (x) {
+            elements1.forEach((x) => {
                 x.style.display = "none";
             });
             dropdownChange = 0;
         }
         else {
-            elements1.forEach(function (x) {
+            elements1.forEach((x) => {
                 x.style.display = "inline-block";
             });
-            elements2.forEach(function (x) {
+            elements2.forEach((x) => {
                 x.style.display = "none";
             });
             dropdownChange = 1;
@@ -353,8 +352,9 @@ function changeDropdown(display1, display2) {
         console.log("Error: `document` is not defined");
     }
 }
-var SecondCalculatorImplement = /** @class */ (function () {
-    function SecondCalculatorImplement(input, errorDiv) {
+//class for functions containing its methods
+class SecondCalculatorImplement {
+    constructor(input, errorDiv) {
         this.input = document.getElementById(input);
         this.errorDiv = document.getElementById(errorDiv);
     }
@@ -367,9 +367,9 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * - 5^2 to 25
      * - -6^2 to 36
      */
-    SecondCalculatorImplement.prototype.square = function () {
+    square() {
         this.input.value = Math.pow(Number(this.input.value), 2).toString();
-    };
+    }
     /**
      * @function  squareRoot
      * @description  performs the square root of a number
@@ -379,15 +379,15 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * - sqaureRoot(25) to 5
      * - squareRoot(-4) to Error!
      */
-    SecondCalculatorImplement.prototype.squareRoot = function () {
-        var inputNumber = Number(this.input.value);
+    squareRoot() {
+        const inputNumber = Number(this.input.value);
         if (inputNumber < 0) {
             this.displayError();
         }
         else {
             this.input.value = Math.sqrt(inputNumber).toString();
         }
-    };
+    }
     /**
      * @function  xRaiseY
      * @description  evaluates a number raised to another number
@@ -396,9 +396,9 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - 6^3 to 216
      */
-    SecondCalculatorImplement.prototype.xRaiseY = function () {
+    xRaiseY() {
         this.input.value += "^";
-    };
+    }
     /**
      * @function  raiseTo10
      * @description  gives 10 to the power of a number
@@ -407,9 +407,9 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - 10^3 to 1000
      */
-    SecondCalculatorImplement.prototype.raiseTo10 = function () {
+    raiseTo10() {
         this.input.value = Math.pow(10, Number(this.input.value)).toString();
-    };
+    }
     /**
      * @function  logarithm
      * @description  performs logarithm(log base 10) of a number
@@ -418,15 +418,15 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - log(2) to 0.3010299956639812
      */
-    SecondCalculatorImplement.prototype.logarithm = function () {
-        var inputNumber = Number(this.input.value);
+    logarithm() {
+        const inputNumber = Number(this.input.value);
         if (inputNumber < 0) {
             this.displayError();
         }
         else {
             this.input.value = Math.log10(inputNumber).toString();
         }
-    };
+    }
     /**
      * @function  naturalLogarithm
      * @description  performs natural logarithm(ln base e) of a number
@@ -435,52 +435,52 @@ var SecondCalculatorImplement = /** @class */ (function () {
      * Examples:
      * - ln(2) to 0.6931471805599453
      */
-    SecondCalculatorImplement.prototype.naturalLogarithm = function () {
-        var inputNumber = Number(this.input.value);
+    naturalLogarithm() {
+        const inputNumber = Number(this.input.value);
         if (inputNumber < 0) {
             this.displayError();
         }
         else {
             this.input.value = Math.log(inputNumber).toString();
         }
-    };
+    }
     /**
      * @function  displayError
      * @description  to display the error and hide it after 2 seconds
      * @params  none
      * @returns void
      */
-    SecondCalculatorImplement.prototype.displayError = function () {
-        var _this = this;
+    displayError() {
         this.errorDiv.textContent = "Error!";
-        setTimeout(function () {
-            _this.errorDiv.textContent = "";
-            _this.input.value = "";
+        setTimeout(() => {
+            this.errorDiv.textContent = "";
+            this.input.value = "";
         }, 2000);
-    };
-    return SecondCalculatorImplement;
-}());
-var advanceFunctionality = new SecondCalculatorImplement("input", "errorDiv");
-var squareFunction = function () {
+    }
+}
+//instance of the class for the functions
+const advanceFunctionality = new SecondCalculatorImplement("input", "errorDiv");
+const squareFunction = () => {
     advanceFunctionality.square();
 };
-var squareRootFunction = function () {
+const squareRootFunction = () => {
     advanceFunctionality.squareRoot();
 };
-var xRaiseYFunction = function () {
+const xRaiseYFunction = () => {
     advanceFunctionality.xRaiseY();
 };
-var raiseTo10Function = function () {
+const raiseTo10Function = () => {
     advanceFunctionality.raiseTo10();
 };
-var logarithmFunction = function () {
+const logarithmFunction = () => {
     advanceFunctionality.logarithm();
 };
-var naturalLogarithmFunction = function () {
+const naturalLogarithmFunction = () => {
     advanceFunctionality.naturalLogarithm();
 };
-var SecondCalculator1Implement = /** @class */ (function () {
-    function SecondCalculator1Implement(input, errorDiv) {
+//class for functions containing its methods
+class SecondCalculator1Implement {
+    constructor(input, errorDiv) {
         this.input = document.getElementById(input);
         this.errorDiv = document.getElementById(errorDiv);
     }
@@ -492,9 +492,9 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * Examples:
      * - 2^3 to 8
      */
-    SecondCalculator1Implement.prototype.cube = function () {
+    cube() {
         this.input.value = Math.pow(Number(this.input.value), 3).toString();
-    };
+    }
     /**
      * @function  cubeRoot
      * @description  to calculate the cube root
@@ -504,15 +504,15 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * - cubeRoot(125) to 5
      * - cubeRoot(-8) to Error!
      */
-    SecondCalculator1Implement.prototype.cubeRoot = function () {
-        var inputNumber = Number(this.input.value);
+    cubeRoot() {
+        const inputNumber = Number(this.input.value);
         if (inputNumber < 0) {
             this.displayError();
         }
         else {
             this.input.value = Math.cbrt(inputNumber).toString();
         }
-    };
+    }
     /**
      * @function  raiseTo2
      * @description  to calculate 2 to power of a number
@@ -522,9 +522,9 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * - 2^5 to 32
      * - 2^54524 to Infinity
      */
-    SecondCalculator1Implement.prototype.raiseTo2 = function () {
+    raiseTo2() {
         this.input.value = Math.pow(2, Number(this.input.value)).toString();
-    };
+    }
     /**
      * @function  logPlus
      * @description  to calculate logarithm of 1+p number
@@ -533,15 +533,15 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * Examples:
      * - log1p(8) to 2.1972245773362196
      */
-    SecondCalculator1Implement.prototype.logPlus = function () {
-        var inputNumber = Number(this.input.value);
+    logPlus() {
+        const inputNumber = Number(this.input.value);
         if (inputNumber < 0) {
             this.displayError();
         }
         else {
             this.input.value = Math.log1p(inputNumber).toString();
         }
-    };
+    }
     /**
      * @function  expMinus
      * @description  to calculate e^x-1 where x is number
@@ -550,9 +550,9 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * Examples:
      * - expm1(2) to 6.38905609893065
      */
-    SecondCalculator1Implement.prototype.expMinus = function () {
+    expMinus() {
         this.input.value = Math.expm1(Number(this.input.value)).toString();
-    };
+    }
     /**
      * @function  eRaisex
      * @description  to calculate e^x where x is number
@@ -561,46 +561,46 @@ var SecondCalculator1Implement = /** @class */ (function () {
      * Examples:
      * - e^2 to 7.3890560989306495
      */
-    SecondCalculator1Implement.prototype.eRaisex = function () {
+    eRaisex() {
         this.input.value = Math.pow(Math.E, Number(this.input.value)).toString();
-    };
+    }
     /**
      * @function  displayError
      * @description  to display the error and hide it after 2 seconds
      * @params  none
      * @returns void
      */
-    SecondCalculator1Implement.prototype.displayError = function () {
-        var _this = this;
+    displayError() {
         this.errorDiv.textContent = "Error!";
-        setTimeout(function () {
-            _this.errorDiv.textContent = "";
-            _this.input.value = "";
+        setTimeout(() => {
+            this.errorDiv.textContent = "";
+            this.input.value = "";
         }, 2000);
-    };
-    return SecondCalculator1Implement;
-}());
-var moreAdvanceFunctionality = new SecondCalculator1Implement("input", "errorDiv");
-var cubeFunction = function () {
+    }
+}
+//instance of the class for the functions
+const moreAdvanceFunctionality = new SecondCalculator1Implement("input", "errorDiv");
+const cubeFunction = () => {
     moreAdvanceFunctionality.cube();
 };
-var cubeRootFunction = function () {
+const cubeRootFunction = () => {
     moreAdvanceFunctionality.cubeRoot();
 };
-var raiseTo2Function = function () {
+const raiseTo2Function = () => {
     moreAdvanceFunctionality.raiseTo2();
 };
-var logPlusFunction = function () {
+const logPlusFunction = () => {
     moreAdvanceFunctionality.logPlus();
 };
-var expMinusFunction = function () {
+const expMinusFunction = () => {
     moreAdvanceFunctionality.expMinus();
 };
-var eRaisexFunction = function () {
+const eRaisexFunction = () => {
     moreAdvanceFunctionality.eRaisex();
 };
-var ExtraFunctionImplement = /** @class */ (function () {
-    function ExtraFunctionImplement(input, errorDiv) {
+//class for the functions containing its methods
+class ExtraFunctionImplement {
+    constructor(input, errorDiv) {
         this.input = document.getElementById(input);
         this.errorDiv = document.getElementById(errorDiv);
     }
@@ -612,9 +612,9 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 3.141592653589793
      */
-    ExtraFunctionImplement.prototype.pi = function () {
+    pi() {
         this.input.value = Math.PI.toString();
-    };
+    }
     /**
      * @function  euler
      * @description  displays the value of Euler's number
@@ -623,18 +623,18 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 2.718281828459045
      */
-    ExtraFunctionImplement.prototype.euler = function () {
+    euler() {
         this.input.value = Math.E.toString();
-    };
+    }
     /**
      * @function  clearAll
      * @description  to entirely clear the input field
      * @params  none
      * @returns void
      */
-    ExtraFunctionImplement.prototype.clearAll = function () {
+    clearAll() {
         this.input.value = "";
-    };
+    }
     /**
      * @function  removeOneElementFromEnd
      * @description  to remove one number from the right side end once clicking on it
@@ -643,9 +643,9 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 5.2893 to 5.289
      */
-    ExtraFunctionImplement.prototype.removeOneElementFromEnd = function () {
+    removeOneElementFromEnd() {
         this.input.value = this.input.value.slice(0, -1);
-    };
+    }
     /**
      * @function  byX
      * @description  performs inverse of a number
@@ -654,10 +654,10 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 1/2 to 0.5
      */
-    ExtraFunctionImplement.prototype.byX = function () {
-        var x = Number(this.input.value);
+    byX() {
+        const x = Number(this.input.value);
         this.input.value = (1 / x).toString();
-    };
+    }
     /**
      * @function modulo
      * @description evaluates the remainder after dividing one number by another.
@@ -667,9 +667,9 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * - 9%7 to 2
      * - 2%2 to 0
      */
-    ExtraFunctionImplement.prototype.modulo = function () {
+    modulo() {
         this.input.value += "%";
-    };
+    }
     /**
      * @function  modulus
      * @description  evaluates the absolute value of a number
@@ -678,9 +678,9 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - -6.235 = 6.235
      */
-    ExtraFunctionImplement.prototype.modulus = function () {
+    modulus() {
         this.input.value = Math.abs(parseFloat(this.input.value)).toString();
-    };
+    }
     /**
      * @function  exponent
      * @description  evaluates the value of E^x, where E is Euler's number
@@ -689,10 +689,10 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - E^5 to 148.4131591025766
      */
-    ExtraFunctionImplement.prototype.exponent = function () {
-        var x = Number(this.input.value);
+    exponent() {
+        const x = Number(this.input.value);
         this.input.value = Math.exp(x).toString();
-    };
+    }
     /**
      * @function  factorial
      * @description  performs the factorial of a number
@@ -701,27 +701,26 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 5! to 120
      */
-    ExtraFunctionImplement.prototype.factorial = function () {
-        var _this = this;
-        var number = Number(this.input.value);
+    factorial() {
+        let number = Number(this.input.value);
         if (number < 0) {
-            var errDiv = document.getElementById("errorDiv");
+            const errDiv = document.getElementById("errorDiv");
             this.errorDiv.textContent = "Error!";
-            setTimeout(function () {
-                _this.errorDiv.textContent = "";
-                _this.input.value = "";
+            setTimeout(() => {
+                this.errorDiv.textContent = "";
+                this.input.value = "";
             }, 2000);
         }
         else if (number == 0 || number == 1) {
             this.input.value = "1";
         }
         else if (number > 1) {
-            for (var i = number - 1; i > 1; i--) {
+            for (let i = number - 1; i > 1; i--) {
                 number = number * i;
             }
             this.input.value = number.toString();
         }
-    };
+    }
     /**
      * @function  signChange
      * @description  gives a number with its opposite sign
@@ -730,45 +729,46 @@ var ExtraFunctionImplement = /** @class */ (function () {
      * Examples:
      * - 7 to -7
      */
-    ExtraFunctionImplement.prototype.signChange = function () {
-        var x = Number(this.input.value);
+    signChange() {
+        const x = Number(this.input.value);
         this.input.value = (-x).toString();
-    };
-    return ExtraFunctionImplement;
-}());
-var extraFunctionality = new ExtraFunctionImplement("input", "errorDiv");
-var piFunction = function () {
+    }
+}
+//instance of the class for the functions
+const extraFunctionality = new ExtraFunctionImplement("input", "errorDiv");
+const piFunction = () => {
     extraFunctionality.pi();
 };
-var eulerFunction = function () {
+const eulerFunction = () => {
     extraFunctionality.euler();
 };
-var clearAllFunction = function () {
+const clearAllFunction = () => {
     extraFunctionality.clearAll();
 };
-var removeOneElementFromEndFunction = function () {
+const removeOneElementFromEndFunction = () => {
     extraFunctionality.removeOneElementFromEnd();
 };
-var byXFunction = function () {
+const byXFunction = () => {
     extraFunctionality.byX();
 };
-var moduloFunction = function () {
+const moduloFunction = () => {
     extraFunctionality.modulo();
 };
-var modulusFunction1 = function () {
+const modulusFunction1 = () => {
     extraFunctionality.modulus();
 };
-var exponentFunction = function () {
+const exponentFunction = () => {
     extraFunctionality.exponent();
 };
-var factorialFunction = function () {
+const factorialFunction = () => {
     extraFunctionality.factorial();
 };
-var signChangeFunction = function () {
+const signChangeFunction = () => {
     extraFunctionality.signChange();
 };
-var MemoryImplement = /** @class */ (function () {
-    function MemoryImplement(input) {
+//class for the memory functions containing its methods
+class MemoryImplement {
+    constructor(input) {
         this.input = document.getElementById(input);
     }
     /**
@@ -777,10 +777,10 @@ var MemoryImplement = /** @class */ (function () {
      * @params  none
      * @returns void
      */
-    MemoryImplement.prototype.buttonDisableToAble = function () {
+    buttonDisableToAble() {
         document.getElementById("mc").disabled = false;
         document.getElementById("mr").disabled = false;
-    };
+    }
     /**
      * @function  memoryClear
      * @description  to clear the memory
@@ -788,25 +788,25 @@ var MemoryImplement = /** @class */ (function () {
      * @returns void
      * Examples: The memoryStack array will be empty
      */
-    MemoryImplement.prototype.memoryClear = function () {
+    memoryClear() {
         memoryStack = [];
-    };
+    }
     /**
      * @function  memoryRecall
      * @description  to recall the value stored in memory
      * @params  none
      * @returns void
      */
-    MemoryImplement.prototype.memoryRecall = function () {
+    memoryRecall() {
         this.input.value = memoryStack[memoryStack.length - 1].toString();
-    };
+    }
     /**
      * @function  memoryAdd
      * @description  to add a specific number to the last value in memory
      * @params  none
      * @returns void
      */
-    MemoryImplement.prototype.memoryAdd = function () {
+    memoryAdd() {
         this.buttonDisableToAble();
         if (memoryStack.length === 1) {
             memoryStack.push(parseInt(this.input.value));
@@ -814,14 +814,14 @@ var MemoryImplement = /** @class */ (function () {
         else {
             memoryStack[memoryStack.length - 1] += parseInt(this.input.value);
         }
-    };
+    }
     /**
      * @function  memorySubtract
      * @description  to subtract a specific number from the last value in memory
      * @params  none
      * @returns void
      */
-    MemoryImplement.prototype.memorySubtract = function () {
+    memorySubtract() {
         this.buttonDisableToAble();
         if (memoryStack.length === 0) {
             memoryStack.push(-1 * parseInt(this.input.value));
@@ -829,14 +829,14 @@ var MemoryImplement = /** @class */ (function () {
         else {
             memoryStack[memoryStack.length - 1] -= parseInt(this.input.value);
         }
-    };
+    }
     /**
-     * @function  memorySubtract
-     * @description  to subtract a specific number from the last value in memory
+     * @function  memorySave
+     * @description  to save the value in memoryStack array
      * @params  non
      * @returns void
      */
-    MemoryImplement.prototype.memorySave = function () {
+    memorySave() {
         this.buttonDisableToAble();
         if (memoryStack.length === 0) {
             memoryStack.push(parseFloat(this.input.value));
@@ -844,22 +844,22 @@ var MemoryImplement = /** @class */ (function () {
         else {
             memoryStack.push(parseFloat(this.input.value));
         }
-    };
-    return MemoryImplement;
-}());
-var memoryFunctionality = new MemoryImplement("input");
-var memoryClearFunction = function () {
+    }
+}
+//instance of the class for the functions
+const memoryFunctionality = new MemoryImplement("input");
+const memoryClearFunction = () => {
     memoryFunctionality.memoryClear();
 };
-var memoryRecallFunction = function () {
+const memoryRecallFunction = () => {
     memoryFunctionality.memoryRecall();
 };
-var memoryAddFunction = function () {
+const memoryAddFunction = () => {
     memoryFunctionality.memoryAdd();
 };
-var memorySubtractFunction = function () {
+const memorySubtractFunction = () => {
     memoryFunctionality.memorySubtract();
 };
-var memorySaveFunction = function () {
+const memorySaveFunction = () => {
     memoryFunctionality.memorySave();
 };
