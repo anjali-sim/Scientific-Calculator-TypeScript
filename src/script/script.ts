@@ -98,6 +98,7 @@ inputField.addEventListener("keypress", function (event: KeyboardEvent) {
   }
 });
 
+//interface for the Trigonometry Functions like sine, cosine, tangent, cotangent, secant, cosecant
 interface TrigonometryCalculator {
   input: HTMLInputElement;
   sine(): void;
@@ -107,6 +108,8 @@ interface TrigonometryCalculator {
   secant(): void;
   cosecant(): void;
 }
+
+//class for Trigonometry functions containing its different methods
 class TrigonometryCalculatorImplement implements TrigonometryCalculator {
   public input: HTMLInputElement;
 
@@ -234,6 +237,8 @@ class TrigonometryCalculatorImplement implements TrigonometryCalculator {
     }
   }
 }
+
+//instance of the class for Trigonometry functions
 const trigonometry = new TrigonometryCalculatorImplement(inputField);
 
 const sineFunction = () => {
@@ -255,6 +260,7 @@ const cosecantFunction = () => {
   trigonometry.cosecant();
 };
 
+//interface for the Functions like floor, ceil, random, modulus
 interface FunctionCalculator {
   input: HTMLInputElement;
   floor(): void;
@@ -263,6 +269,7 @@ interface FunctionCalculator {
   modulus(): void;
 }
 
+// class for functions containing its different methods
 class FunctionCalculatorImplement implements FunctionCalculator {
   public input: HTMLInputElement;
 
@@ -321,6 +328,7 @@ class FunctionCalculatorImplement implements FunctionCalculator {
   }
 }
 
+//instance of the class for functions
 const functions = new FunctionCalculatorImplement(inputField);
 
 const floorFunction = () => {
@@ -412,6 +420,7 @@ function changeDropdown(display1: string, display2: string): void {
   }
 }
 
+//interface for the functions like square, squareRoot, xRaiseY, raiseTo10, logarithm, naturalLogarithm
 interface SecondCalculator {
   square(): void;
   squareRoot(): void;
@@ -421,6 +430,7 @@ interface SecondCalculator {
   naturalLogarithm(): void;
 }
 
+//class for functions containing its methods
 class SecondCalculatorImplement implements SecondCalculator {
   input: HTMLInputElement;
   errorDiv: HTMLElement;
@@ -533,6 +543,8 @@ class SecondCalculatorImplement implements SecondCalculator {
     }, 2000);
   }
 }
+
+//instance of the class for the functions
 const advanceFunctionality = new SecondCalculatorImplement("input", "errorDiv");
 
 const squareFunction = () => {
@@ -554,6 +566,7 @@ const naturalLogarithmFunction = () => {
   advanceFunctionality.naturalLogarithm();
 };
 
+//interface for the functions like cube, cubeRoot, raiseTo2, logPlus, expMinus, eRaisex
 interface SecondCalculator1 {
   cube(): void;
   cubeRoot(): void;
@@ -563,6 +576,7 @@ interface SecondCalculator1 {
   eRaisex(): void;
 }
 
+//class for functions containing its methods
 class SecondCalculator1Implement implements SecondCalculator1 {
   input: HTMLInputElement;
   errorDiv: HTMLElement;
@@ -670,6 +684,8 @@ class SecondCalculator1Implement implements SecondCalculator1 {
     }, 2000);
   }
 }
+
+//instance of the class for the functions
 const moreAdvanceFunctionality = new SecondCalculator1Implement(
   "input",
   "errorDiv"
@@ -693,6 +709,7 @@ const eRaisexFunction = () => {
   moreAdvanceFunctionality.eRaisex();
 };
 
+//interface for the functions like pi, euler, clearAll, removeOneElementFromEnd, byX, modulo, modulus, exponent, factorial, signChange
 interface ExtraFunctionInterface {
   pi(): void;
   euler(): void;
@@ -706,6 +723,7 @@ interface ExtraFunctionInterface {
   signChange(): void;
 }
 
+//class for the functions containing its methods
 class ExtraFunctionImplement implements ExtraFunctionInterface {
   input: HTMLInputElement;
   errorDiv: HTMLElement;
@@ -852,6 +870,8 @@ class ExtraFunctionImplement implements ExtraFunctionInterface {
     this.input.value = (-x).toString();
   }
 }
+
+//instance of the class for the functions
 const extraFunctionality = new ExtraFunctionImplement("input", "errorDiv");
 const piFunction = () => {
   extraFunctionality.pi();
@@ -884,6 +904,7 @@ const signChangeFunction = () => {
   extraFunctionality.signChange();
 };
 
+//interface for the memory functions like memoryClear, memoryRecall, memoryAdd, memorySubtract, memeorySave
 interface Memory {
   input: HTMLInputElement;
   buttonDisableToAble(): void;
@@ -894,6 +915,7 @@ interface Memory {
   memorySave(): void;
 }
 
+//class for the memory functions containing its methods
 class MemoryImplement implements Memory {
   input: HTMLInputElement;
 
@@ -964,8 +986,8 @@ class MemoryImplement implements Memory {
   }
 
   /**
-   * @function  memorySubtract
-   * @description  to subtract a specific number from the last value in memory
+   * @function  memorySave
+   * @description  to save the value in memoryStack array
    * @params  non
    * @returns void
    */
@@ -979,6 +1001,7 @@ class MemoryImplement implements Memory {
   }
 }
 
+//instance of the class for the functions
 const memoryFunctionality = new MemoryImplement("input");
 const memoryClearFunction = () => {
   memoryFunctionality.memoryClear();
