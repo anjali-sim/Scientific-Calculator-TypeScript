@@ -109,7 +109,7 @@ interface TrigonometryCalculator {
   cosecant(): void;
 }
 
-//class for Trigonometry functions containing its different methods
+// //class for Trigonometry functions containing its different methods
 class TrigonometryCalculatorImplement implements TrigonometryCalculator {
   public input: HTMLInputElement;
 
@@ -350,6 +350,8 @@ const modulusFunction = () => {
  * @params  none
  */
 function calculate() {
+  // const input: HTMLInputElement = document.querySelector("input")!;
+  // input.value = input.value.split("^").join("**");
   const input = document.getElementById("input") as HTMLInputElement;
   input.value = input.value.replaceAll("^", "**");
   input.value = input.value;
@@ -386,32 +388,31 @@ function calculate() {
  * @returns void
  */
 function changeDropdown(display1: string, display2: string): void {
+  let dropdownChange: number = 1;
+  const elements2 = document.querySelectorAll("display2") as NodeList;
+  const elements1 = document.querySelectorAll("display1") as NodeList;
   if (typeof document !== "undefined") {
-    const elements2: HTMLElement[] = Array.from(
-      document.getElementsByClassName("display2")
-    ) as HTMLElement[];
-    const elements1: HTMLElement[] = Array.from(
-      document.getElementsByClassName("display1")
-    ) as HTMLElement[];
-
     if (dropdownChange === 1) {
-      elements2.forEach((x: HTMLElement) => {
-        x.style.display = "inline-block";
-      });
+      for (let i = 0; i < elements2.length; i++) {
+        let btn = elements2[i] as HTMLButtonElement;
+        btn.style.display = "inline-block";
+      }
 
-      elements1.forEach((x: HTMLElement) => {
-        x.style.display = "none";
-      });
+      for (let i = 0; i < elements1.length; i++) {
+        let btn = elements1[i] as HTMLButtonElement;
+        btn.style.display = "none";
+      }
 
       dropdownChange = 0;
     } else {
-      elements1.forEach((x: HTMLElement) => {
-        x.style.display = "inline-block";
-      });
-
-      elements2.forEach((x: HTMLElement) => {
-        x.style.display = "none";
-      });
+      for (let i = 0; i < elements1.length; i++) {
+        let btn = elements1[i] as HTMLButtonElement;
+        btn.style.display = "inline-block";
+      }
+      for (let i = 0; i < elements2.length; i++) {
+        let btn = elements2[i] as HTMLButtonElement;
+        btn.style.display = "none";
+      }
 
       dropdownChange = 1;
     }
@@ -1018,3 +1019,19 @@ const memorySubtractFunction = () => {
 const memorySaveFunction = () => {
   memoryFunctionality.memorySave();
 };
+
+declare interface Math {
+  log10(x: number): number;
+}
+
+declare interface Math {
+  expm1(x: number): number;
+}
+
+declare interface Math {
+  log1p(x: number): number;
+}
+
+declare interface Math {
+  cbrt(x: number): number;
+}
